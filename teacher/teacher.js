@@ -1,5 +1,3 @@
-const SERVER = "http://localhost:8080/";
-
 let socket = io();
 let room;
 
