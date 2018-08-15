@@ -50,14 +50,19 @@ io.on('connection', function(socket) {
 
     socket.on('slowDown', function(data) {
     });
+
     socket.on('speedUp', function(data) {
     });
+
     socket.on('confused', function(data) {
     });
+
     socket.on('break', function(data) {
     });
+
     socket.on('question', function(data) {
     });
+
     socket.on('leaveRoom', function(data) {
     });
 

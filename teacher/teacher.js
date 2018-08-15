@@ -16,7 +16,7 @@ socket.on('joinedRoom', function(data) {
     console.log('Successfully joined room ' + data);
 });
 
-socket.emit('newRoom', {});
+socket.emit('newRoom');
 
 window.onbeforeunload = function() {
     socket.emit('deleteRoom');

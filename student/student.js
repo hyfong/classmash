@@ -11,16 +11,20 @@ socket.on('Error', function(data) {
 });
 
 $('#slowDownButton').on('click', function(e) {
-    alert('Slow Down');
+    socket.emit('slowDown')
 });
+
 $('#confusedButton').on('click', function(e) {
-    alert('Confused');
+    socket.emit('confused')
 });
+
 $('#breakButton').on('click', function(e) {
-    alert('Need a break');
+    socket.emit('break')
 });
+
 $('#questionButton').on('click', function(e) {
-    alert('Have a question');
+    let question = $('#question').val();
+    socket.emit('question', question)
 });
 
 $('#roomCodeButton').on('click', function() {
@@ -40,7 +44,24 @@ socket.on('joinedRoom', function(data) {
     $('#confusedButton').attr('disabled', false);
     $('#breakButton').attr('disabled', false);
     $('#questionButton').attr('disabled', false);
+    $('#question').attr('disabled', false);
     $('#roomCodeButton').attr('disabled', true);
     $('#roomCode').attr('disabled', true);
-    $('#question').attr('disabled', false); // TODO handle disconnections
 });
+
+socket.on('roomDeleted', function() {
+    alert('Teacher left room');
+
+    $('#slowDownButton').attr('disabled', true);
+    $('#confusedButton').attr('disabled', true);
+    $('#breakButton').attr('disabled', true);
+    $('#questionButton').attr('disabled', true);
+    $('#question').attr('disabled', true);
+    $('#question').val("");
+    $('#roomCodeButton').attr('disabled', false);
+    $('#roomCode').attr('disabled', false);
+});
+
+window.onbeforeunload = function() {
+    socket.emit('leaveRoom');
+};
