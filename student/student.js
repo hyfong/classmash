@@ -6,7 +6,7 @@ socket.on('connect', function() {
     console.log('Student ID: ' + sessionID);
 });
 
-socket.on('Error', function(data) {
+socket.on('error', function(data) {
     alert(data);
 });
 
@@ -34,11 +34,11 @@ $('#roomCodeButton').on('click', function() {
         return;
     }
     socket.emit('joinRoom', roomCode);
+    room = roomCode;
 });
 
-socket.on('joinedRoom', function(data) {
-    console.log('Successfully joined room ' + data);
-    room = data;
+socket.on('joinedRoom', function() {
+    console.log('Successfully joined room ' + room);
 
     $('#slowDownButton').attr('disabled', false);
     $('#confusedButton').attr('disabled', false);
