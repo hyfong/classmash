@@ -53,7 +53,7 @@ io.on('connection', function(socket) {
         }
         console.log('Student ' + socket.id + ' left room ' + currentRoom);
         socket.leave(currentRoom);
-        io.to(teachers[currentRoom]).emit('studentLeft', socket.id);
+        io.to(teachers[currentRoom]).emit('studentLeft');
     });
 
     socket.on('deleteRoom', function() {
@@ -70,19 +70,24 @@ io.on('connection', function(socket) {
         console.log('Room ' + currentRoom + ' deleted');
     });
 
-    socket.on('slowDown', function(data) {
+    socket.on('slowDown', function() {
+        io.to(teachers[currentRoom]).emit('slowDown', socket.id);
     });
 
-    socket.on('speedUp', function(data) {
+    socket.on('speedUp', function() {
+        io.to(teachers[currentRoom]).emit('speedUp', socket.id);
     });
 
-    socket.on('confused', function(data) {
+    socket.on('confused', function() {
+        io.to(teachers[currentRoom]).emit('confused', socket.id);
     });
 
-    socket.on('break', function(data) {
+    socket.on('break', function() {
+        io.to(teachers[currentRoom]).emit('break', socket.id);
     });
 
-    socket.on('question', function(data) {
+    socket.on('question', function() {
+        io.to(teachers[currentRoom]).emit('question', socket.id);
     });
 
 });

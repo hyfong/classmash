@@ -14,6 +14,10 @@ $('#slowDownButton').on('click', function(e) {
     socket.emit('slowDown')
 });
 
+$('#speedUpButton').on('click', function(e) {
+    socket.emit('speedUp')
+});
+
 $('#confusedButton').on('click', function(e) {
     socket.emit('confused')
 });
@@ -41,6 +45,7 @@ socket.on('joinedRoom', function() {
     console.log('Successfully joined room ' + room);
 
     $('#slowDownButton').attr('disabled', false);
+    $('#speedUpButton').attr('disabled', false);
     $('#confusedButton').attr('disabled', false);
     $('#breakButton').attr('disabled', false);
     $('#questionButton').attr('disabled', false);
@@ -53,6 +58,7 @@ socket.on('roomDeleted', function() {
     alert('Teacher left room');
 
     $('#slowDownButton').attr('disabled', true);
+    $('#speedUpButton').attr('disabled', true);
     $('#confusedButton').attr('disabled', true);
     $('#breakButton').attr('disabled', true);
     $('#questionButton').attr('disabled', true);
